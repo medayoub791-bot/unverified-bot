@@ -13,7 +13,7 @@ const client = new Client({
   ]
 });
 
-const token = MTQ3ODc1NzQyOTEzODI5Mjc4Ng.GxGn00.rw-Y322uv6mtqwitGjd15s_QdeX4MTTWUjFLTo;
+const token = process.env.BOT_TOKEN;
 
 client.once("ready", async () => {
   console.log(`Logged in as ${client.user.tag}`);
@@ -35,12 +35,11 @@ client.once("ready", async () => {
   console.log("Slash command registered.");
 });
 
-// لما عضو جديد يدخل
 client.on("guildMemberAdd", async (member) => {
   try {
     await member.roles.add("1478415573955383428");
 
-    const channel = member.guild.channels.cache.get(1478415971915010100");
+    const channel = member.guild.channels.cache.get("1478415971915010100");
 
     if (channel) {
       channel.send(
@@ -55,7 +54,6 @@ client.on("guildMemberAdd", async (member) => {
   }
 });
 
-// كوموند ping
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
